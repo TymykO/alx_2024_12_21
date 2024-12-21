@@ -1,16 +1,16 @@
 from rich import print
 from typing import Callable
-
+from tabulate import tabulate
 # Funkcje przetwarzające zamówienia
-def process_online_order(order):
+def process_online_order(order: dict) -> dict:
     order["amount"] += 10
     return order
 
-def process_store_order(order):
+def process_store_order(order: dict) -> dict:
     order["amount"] *= 0.95
     return order
 
-def process_vip_order(order):
+def process_vip_order(order: dict) -> dict:
     if order["amount"] >= 100:
         order["amount"] *= 0.9
     return order
@@ -36,7 +36,7 @@ tax_rules = {
 }
 
 # Funkcja do przetwarzania jednego zamówienia
-def process_order(order, order_processor, tax_calculator):
+def process_order(order: dict, order_processor: Callable[[dict], dict], tax_calculator: Callable[[float], tuple[float, int]]) -> dict:
     # nowa wartosc zamówienia
     order = order_processor(order)
 
@@ -49,12 +49,11 @@ def process_order(order, order_processor, tax_calculator):
     return order
 
 # Funkcja główna
-def process_orders(orders):
+def process_orders(orders: list[dict]) -> dict:
     summary = {'total_value': 0, 'total_tax': 0, 'order_count_by_type': {'online': 0, 'store': 0, 'vip': 0}}
     for order in orders:
         order_processor = order_processors[order["type"]]
         tax_calculator = tax_rules[order["category"]]
-
 
         order = process_order(order, order_processor, tax_calculator)
 
@@ -65,26 +64,17 @@ def process_orders(orders):
     return summary
 
 # Przetwarzanie zamówień
-orders = [
-    {"product": "Laptop", "type": "online", "category": "electronics", "amount": 1200},
-    {"product": "Chair", "type": "store", "category": "furniture", "amount": 300},
-    {"product": "Book", "type": "vip", "category": "books", "amount": 50},
-    {"product": "Phone", "type": "online", "category": "electronics", "amount": 800},
-    {"product": "Table", "type": "store", "category": "furniture", "amount": 500},
-]
 
-summary = process_orders(orders)
-print("Podsumowanie zamówień:", summary)
 
 # #   
 # #   Podsumowanie zamówień:
 # #   {'total_value': 2880.0, 'total_tax': 384.0, 'order_count_by_type': {'online': 2, 'store': 2, 'vip': 1}}
 # #   
 
-from tabulate import tabulate
+
 
 # Funkcja do generowania i wyświetlania szczegółowego podsumowania w formie tabeli
-def display_summary_table(orders):
+def display_summary_table(orders: list[dict]) -> str:
     # table_data = [
     #     {
     #         "Product": order["product"],
@@ -100,4 +90,18 @@ def display_summary_table(orders):
     # Tworzenie tabeli
     return tabulate(orders, headers="keys", tablefmt="grid")
 
-print(display_summary_table(orders))
+
+
+if __name__ == "__main__":
+
+    orders = [
+        {"product": "Laptop", "type": "online", "category": "electronics", "amount": 1200},
+        {"product": "Chair", "type": "store", "category": "furniture", "amount": 300},
+        {"product": "Book", "type": "vip", "category": "books", "amount": 50},
+        {"product": "Phone", "type": "online", "category": "electronics", "amount": 800},
+        {"product": "Table", "type": "store", "category": "furniture", "amount": 500},
+    ]
+
+    summary = process_orders(orders)
+    print("Podsumowanie zamówień:", summary)
+    print(display_summary_table(orders))
