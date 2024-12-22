@@ -1,0 +1,3 @@
+Uzycie funkcji hello
+2024-12-22 09:33:07.159018: Uzycie funkcji hello
+2024-12-22 09:36:17.051748: Uzycie funkcji hello
