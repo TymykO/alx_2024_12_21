@@ -1,19 +1,26 @@
+class PositiveSide:
+    """Ta klasa to tzw deskryptor"""
+    def __init__(self):
+        self.name = None
+
+    def __set_name__(self, owner, name):
+        self.name = "_" + name
+
+    def __get__(self, obj, owner=None):
+        return getattr(obj, self.name)
+
+    def __set__(self, obj, value):
+        # if value < 0:
+        #     raise ValueError("Side nie moze byc ujemny")
+        setattr(obj, self.name, value)
+
 class Square(object):
+
+    side = PositiveSide()
     
     def __init__(self, side=1):
 
         self.side = side
-
-    @property
-    def side(self):
-        return self._side
-    
-
-    @side.setter
-    def side(self, value):
-        if value < 0:
-            raise ValueError("Side nie moze byc mniejszy od 0")
-        self._side = value
 
     @property
     def area(self):
