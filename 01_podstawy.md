@@ -1,34 +1,65 @@
-# tworzenie środowiska wirtualnego
+# Podstawy pracy z Pythonem
+
+## Środowisko wirtualne (venv)
+
+### Tworzenie środowiska wirtualnego
 
 ```bash
 python -m venv <nazwa_środowiska>
 ```
 
-# aktywowanie środowiska wirtualnego Unix
+### Aktywacja środowiska wirtualnego
 
+Dla systemów Unix (Linux/MacOS):
 ```bash
 source venv/bin/activate
 ```
 
-# aktywowanie środowiska wirtualnego Windows
-
+Dla Windows:
 ```bash
 venv\Scripts\activate
 ```
 
-# dezaktywowanie środowiska wirtualnego
+### Dezaktywacja środowiska wirtualnego
 
 ```bash
 deactivate
 ```
 
+## Konfiguracja edytora VSCode/Cursor
 
-## ustawienie interpretera w VSC/Cursor
+### Wybór interpretera Python
 
-Mac
+MacOS:
+- Użyj skrótu `Shift + Command + P`
+- Wpisz "Python: Select Interpreter"
+- Wybierz interpreter z utworzonego środowiska wirtualnego
 
-    Shift + Command + P -> Python: Select Interpreter
+Windows/Linux:
+- Użyj skrótu `Shift + Ctrl + P`
+- Wpisz "Python: Select Interpreter"
+- Wybierz interpreter z utworzonego środowiska wirtualnego
 
-Windows / linux
+## Zarządzanie pakietami
 
-    Shift + Ctrl + p -> Python: Select Interpreter
+### Instalacja pakietów
+```bash
+pip install <nazwa_pakietu>
+```
+
+### Zapisywanie zależności
+```bash
+pip freeze > requirements.txt
+```
+
+### Instalacja zależności z pliku
+```bash
+pip install -r requirements.txt
+```
+
+## Dobre praktyki
+
+- Zawsze używaj środowiska wirtualnego dla nowych projektów
+- Trzymaj plik `requirements.txt` w repozytorium
+- Aktualizuj `requirements.txt` po dodaniu nowych zależności
+- Nie commituj folderu środowiska wirtualnego do repozytorium
