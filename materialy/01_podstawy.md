@@ -4,7 +4,9 @@
 
 ### Windows
 - Pobierz instalator z [python.org](https://www.python.org/downloads/)
+- Zalecana wersja: Python 3.8 lub nowsza
 - Podczas instalacji zaznacz opcję "Add Python to PATH"
+- Zaznacz opcję "Install pip"
 - Sprawdź instalację w terminalu:
 ```bash
 python --version
@@ -133,6 +135,25 @@ Zalety uv:
 - Obsługa wheel i sdist
 - Zoptymalizowane rozwiązywanie zależności
 
+### Aktywacja środowiska wirtualnego
+
+Dla systemów Unix (Linux/MacOS):
+```bash
+source nazwa_srodowiska/bin/activate
+# lub
+. nazwa_srodowiska/bin/activate
+```
+
+Dla Windows PowerShell:
+```powershell
+.\nazwa_srodowiska\Scripts\Activate.ps1
+```
+
+Dla Windows Command Prompt:
+```cmd
+nazwa_srodowiska\Scripts\activate.bat
+```
+
 ## 3. Uruchamianie skryptów
 
 ### Podstawowe uruchomienie
@@ -173,6 +194,26 @@ ipython
 
 # Uruchomienie skryptu
 %run script.py
+```
+
+### Zaawansowane opcje uruchamiania
+
+```bash
+# Uruchomienie z optymalizacją
+python -O script.py  # usuwa asercje
+python -OO script.py # usuwa asercje i docstringi
+
+# Uruchomienie z debuggerem
+python -m pdb script.py
+
+# Sprawdzanie składni
+python -m py_compile script.py
+
+# Pomiar czasu wykonania
+python -m timeit "kod_do_zmierzenia"
+
+# Profiler
+python -m cProfile script.py
 ```
 
 ## 4. Środowiska programistyczne (IDE)
@@ -236,3 +277,50 @@ projekt/
 - `flake8` - linter
 - `mypy` - sprawdzanie typów
 - `pytest` - testy jednostkowe
+
+### Podstawowe zarządzanie pakietami (pip)
+```bash
+# Aktualizacja pip
+python -m pip install --upgrade pip
+
+# Instalacja pakietu
+pip install nazwa_pakietu
+
+# Instalacja konkretnej wersji
+pip install nazwa_pakietu==1.0.0
+
+# Aktualizacja pakietu
+pip install --upgrade nazwa_pakietu
+```
+
+### Zmienne środowiskowe
+- PYTHONPATH - ścieżka do modułów
+- PYTHONHOME - lokalizacja instalacji Pythona
+- VIRTUAL_ENV - ścieżka do aktywnego środowiska wirtualnego
+
+### VS Code i środowiska wirtualne
+
+1. Utworzenie środowiska:
+   - Ctrl/Cmd + Shift + P
+   - "Python: Create Environment"
+   - Wybierz venv lub conda
+
+2. Wybór interpretera:
+   - Ctrl/Cmd + Shift + P
+   - "Python: Select Interpreter"
+   - Wybierz środowisko z listy
+
+3. Integracja z terminalem:
+   - VS Code automatycznie aktywuje wybrane środowisko w zintegrowanym terminalu
+
+### Dobre praktyki bezpieczeństwa
+- Nie przechowuj haseł i kluczy API w kodzie
+- Używaj plików .env dla zmiennych środowiskowych
+- Regularnie aktualizuj zależności
+- Sprawdzaj znane podatności (np. używając safety)
+
+### Dobre praktyki wydajności
+- Używaj list comprehension zamiast pętli gdzie to możliwe
+- Preferuj generatory dla dużych zbiorów danych
+- Wykorzystuj wbudowane funkcje Pythona
+- Profiluj kod przed optymalizacją
