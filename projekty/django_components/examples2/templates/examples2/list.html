@@ -1,6 +1,9 @@
-jestem X2.html
-<a href="{% url 'examples:list' %}">Link do examples</a>
-<a href="{% url 'examples2:list' %}">Link do examples2</a>
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>jestem X.html - wyświetlam jakas listę elementów</h1>
 
 
 {% comment %} {{ elementy }} {% endcomment %}
@@ -14,3 +17,4 @@ jestem X2.html
 {% endfor %}
 </ul>
 
+{% endblock %}

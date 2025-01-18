@@ -1,9 +1,14 @@
-<a href="{% url 'examples:list' %}">Link do examples</a>
-<a href="{% url 'examples2:list' %}">Link do examples2</a>
+{% extends "base.html" %}
 
+{% block content %}
 jestem details.html
 
 
 <p>
     szczegóły elementu {{ element }}
 </p>
+
+
+{% include "includes/table.html" %}
+
+{% endblock %}

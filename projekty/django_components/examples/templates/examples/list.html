@@ -1,8 +1,8 @@
-<!-- url to tzw tag - funkcja wywoływana w szablonie-->
-<a href="{% url 'examples:list' %}">Link do examples</a>
-<a href="{% url 'examples2:list' %}">Link do examples2</a>
+{% extends "base.html" %}
 
-jestem X.html - wyświetlam jakas listę elementów
+{% block content %}
+
+<h1>jestem X.html - wyświetlam jakas listę elementów</h1>
 
 <ul>
 {% for element in elementy %}
@@ -10,3 +10,4 @@ jestem X.html - wyświetlam jakas listę elementów
 {% endfor %}
 </ul>
 
+{% endblock %}
