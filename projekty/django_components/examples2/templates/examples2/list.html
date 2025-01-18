@@ -1,6 +1,6 @@
+jestem X2.html
 <a href="{% url 'examples:list' %}">Link do examples</a>
 <a href="{% url 'examples2:list' %}">Link do examples2</a>
-
 
 
 {% comment %} {{ elementy }} {% endcomment %}
@@ -10,7 +10,7 @@
 
 <ul>
 {% for element in elementy %}
-    <li>{{ element }}</li>
+    <li><a href="{% url 'examples2:details' element %}">{{ element }}</a></li>
 {% endfor %}
 </ul>
-jestem X2.html
+

@@ -3,3 +3,10 @@
 <a href="{% url 'examples2:list' %}">Link do examples2</a>
 
 jestem X.html - wyświetlam jakas listę elementów
+
+<ul>
+{% for element in elementy %}
+    <li><a href="{% url 'examples:details' element %}">{{ element }}</a></li>
+{% endfor %}
+</ul>
+

@@ -3,8 +3,12 @@ from django.shortcuts import render
 
 
 # Create your views here.
-def first_view(request):
-    return render(request, "examples/list.html")
+def list_view(request):
+    return render(request, "examples/list.html", {"elementy": ["a", "b", "c"]})
+
+
+def details_view(request, element):
+    return render(request, "examples/details.html", {"element": element})
 
 
 """
