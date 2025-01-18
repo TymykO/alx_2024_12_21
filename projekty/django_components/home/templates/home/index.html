@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>
+{{ text|upper }}  <!-- użycie filtra upper -->
+</p>
+
+<p>
+    {{ lista }}  <br>
+    {{ lista|first }}
+
+    {% for element in lista %}{{element}}<br>{% endfor %}
+
+</p>
+
+<p>
+    {{ tuple }}  <br>
+    {{ tuple|first }}<br>
+    {% for element in tuple %}{{element}}<br>{% endfor %}<br>
+    
+    wybieranie po indeksie: <br>
+    {{ tuple.0 }}
+
+</p>
+
+<p>
+    {{ dict }}  <br>
+    {{ dict.a }} <br>
+    {% for key, value in dict.items %}
+        {{ key }} - {{ value }}<br>
+    {% endfor %}
+</p>
+
+<p>
+    {{ number }}  <br>
+    {{ number|floatformat:2 }}  <br>
+    {{ number|floatformat:0 }}  <br>
+    {{ number2|floatformat:1 }}  <br>
+    {{ number|floatformat:3 }}  <br>
+
+</p>
+
+<p>
+    {{ date }}  <br>
+    {{ date|date:"d-m-Y" }}  <br>
+    
+    {{ date|date:"d.m.Y H:i:s" }}  <br>
+</p>
+
+<p>
+    {{ person }}  <br>
+    {{ person.name }}  <br>
+    {{ person.age }}  <br>
+    {{ person.rok_urodzenia }}  <br>
+    {{ person.tabelka }}  <br>
+    {{ person.tabelka|safe }}  <br>
+</p>
+
+
+<p>
+    {{ funkcja }}  <br>
+
+</p>
+
+<p>
+{% lorem 10 p random %}
+</p>
+
+{% endblock %}

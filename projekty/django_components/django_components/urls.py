@@ -23,6 +23,8 @@ from django.http import HttpResponse
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", include("home.urls")),
     path("examples/", include("examples.urls")),   # http://127.0.0.1/components/
     path("examples2/", include("examples2.urls")),   
+
 ] 

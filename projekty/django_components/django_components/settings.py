@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     "examples2",
     "examples",
+    "home",
+
 
 ]
 
