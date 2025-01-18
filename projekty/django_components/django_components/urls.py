@@ -26,5 +26,6 @@ urlpatterns = [
     path("", include("home.urls")),
     path("examples/", include("examples.urls")),   # http://127.0.0.1/components/
     path("examples2/", include("examples2.urls")),   
+    path("books/", include("books.urls")),
 
 ] 
