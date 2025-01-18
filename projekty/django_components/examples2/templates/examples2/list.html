@@ -1,0 +1,16 @@
+<a href="{% url 'examples:list' %}">Link do examples</a>
+<a href="{% url 'examples2:list' %}">Link do examples2</a>
+
+
+
+{% comment %} {{ elementy }} {% endcomment %}
+<br>
+<a href="{% url 'examples2:details' 'przyklad' %}">Link do details dla zmiennej przyklad</a>
+<br>
+
+<ul>
+{% for element in elementy %}
+    <li>{{ element }}</li>
+{% endfor %}
+</ul>
+jestem X2.html
