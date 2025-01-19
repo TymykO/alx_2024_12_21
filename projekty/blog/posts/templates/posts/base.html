@@ -8,6 +8,7 @@
 <body>
     <nav>
         <a href="{% url 'posts:list' %}">Home</a>
+        <a href="{% url 'posts:create' %}">Create Post</a>
     
     <div>
         {% if user.is_authenticated %}

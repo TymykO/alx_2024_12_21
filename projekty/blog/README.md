@@ -22,3 +22,13 @@ Przekierowanie do strony głównej:
 ```python
 redirect("posts:list")
 ```
+
+## Cwiczenie 2 - dodanie bootstrapa do strony. 
+
+- dodajć przy CDN style i skrypty bootstrapa do base.html
+- zmodyfikować base.html tak aby było responsywne - content trzeba umieścić w containerze
+
+```html 
+<div class="container">
+</div>
+```

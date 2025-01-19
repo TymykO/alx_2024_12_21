@@ -28,6 +28,20 @@ def post_details(request, post_id):
     # post = Post.objects.get(id=post_id, status="published")
     return render(request, "posts/details.html", {"post": post, "form": form})
 
+@login_required
+def post_create(request):
+    form = PostForm()
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            if request.user.is_superuser:
+                post.status = "published"
+            post.save()
+            return redirect("posts:list")
+    return render(request, "posts/create.html", {"form": form})
+
 
 def login_view(request):
     if request.method == "POST":
