@@ -1,8 +1,17 @@
 {% extends "posts/base.html" %}
 
 {% block content %}
+
+{% if form %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>
+{% else %}
 <h1>{{ post.title }}</h1>
 <p><small>By {{ post.author }} on {{ post.posted_at|date }}</small></p> 
 {% comment %} post.posted_at|date:"d.m.Y H:i" {% endcomment %}
 <p>{{ post.content }}</p>
+{% endif%}
 {% endblock %}

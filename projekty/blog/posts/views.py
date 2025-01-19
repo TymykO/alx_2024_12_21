@@ -3,6 +3,7 @@ from .models import Post
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from .forms import PostForm
 # Create your views here.
 
 @login_required
@@ -12,9 +13,20 @@ def posts_list(request):
 
 @login_required
 def post_details(request, post_id):
+    form = None
     post = get_object_or_404(Post, id=post_id, status="published")
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+        
+    
+    if request.user == post.author:
+        form = PostForm(instance=post)
+        
+    
     # post = Post.objects.get(id=post_id, status="published")
-    return render(request, "posts/details.html", {"post": post})
+    return render(request, "posts/details.html", {"post": post, "form": form})
 
 
 def login_view(request):
