@@ -4,17 +4,27 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
+from django.core.paginator import Paginator
 # Create your views here.
 
 @login_required
 def posts_list(request):
+
     posts = Post.objects.filter(status="published")
-    return render(request, "posts/list.html", {"posts": posts})
+
+    page_number = request.GET.get("page", 1)
+    per_page = request.GET.get("per_page", 50)
+    paginator = Paginator(posts, per_page)
+
+    page_obj = paginator.page(page_number)
+
+    return render(request, "posts/list.html", {"page_obj": page_obj})
 
 @login_required
 def post_details(request, post_id):
     form = None
     post = get_object_or_404(Post, id=post_id, status="published")
+    
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
