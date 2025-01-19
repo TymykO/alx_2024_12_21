@@ -1,0 +1,19 @@
+{% extends "posts/base.html" %}
+
+{% load thumbnail %}
+
+{% block content %}
+<h1>{{ gallery.title }}</h1>
+{% for image in gallery.images.all %}
+{% comment %} <img src="{{ image.image.url }}" alt="{{ image.alt }}"> {% endcomment %}
+
+
+    {% thumbnail image.image "200x100" as im %}
+        <a href="{% url 'galleries:image_details' gallery.id image.id %}" target="_blank">
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+        </a>
+    {% endthumbnail %}
+
+
+{% endfor %}
+{% endblock %}

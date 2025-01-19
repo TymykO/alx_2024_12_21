@@ -50,3 +50,14 @@ lub
 - dostosować login.html do użycia crispy_forms
 - dostosować create.html do użycia crispy_forms
 - dostosować details.html do użycia crispy_forms
+
+
+## Ćwiczenie 4 - dodanie obrazka do posta
+
+- pip install Pillow
+- dodaję do models.py pole image
+<!-- - dodaję do forms.py pole image -->
+<!-- - dodaję do views.py obsługę obrazka -->
+- dodaję do templates/posts/details.html obsługę obrazka
+
+<img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">

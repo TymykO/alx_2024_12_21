@@ -1,0 +1,10 @@
+{% extends "posts/base.html" %}
+
+{% block content %}
+<h1>{{ image.title }}</h1>
+
+<p>należy do galerii: {{ image.gallery.title }}</p>
+<img src="{{ image.image.url }}" alt="{{ image.alt }}">
+
+<p>alt: {{ image.alt }}</p>
+{% endblock %}
