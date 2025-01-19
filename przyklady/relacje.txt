@@ -1,0 +1,47 @@
+# postać nienormalna
+# book
+title;author
+Pan Wołodyjowski;Henryk Sienkiewicz
+Krzyżacy;Henryk Sienkiewicz
+Krzyżacy;Andrzej Sapkowski
+Potop;Henryk Sienkiewicz
+
+# author
+id;name
+1;Henryk Sienkiewicz
+2;Andrzej Sapkowski
+
+# postać normalna
+# book
+title;author
+Pan Wołodyjowski;1
+Krzyżacy;1
+Krzyżacy;2
+Potop;1
+
+
+####
+
+# book
+id;title
+1;Pan Wołodyjowski
+2;Krzyżacy
+3;Potop
+4;alternatywny Potop
+
+# author
+    id;name
+1;Henryk Sienkiewicz
+2;Andrzej Sapkowski
+
+# many to many
+# book_author
+book_id;author_id
+1;1
+2;1
+2;2
+3;1
+4;1  # autor to Henryk Sienkiewicz
+4;2  # autor to Andrzej Sapkowski
+
+

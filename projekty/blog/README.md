@@ -32,3 +32,21 @@ redirect("posts:list")
 <div class="container">
 </div>
 ```
+
+
+## Ćwiczenie 3 - dostosowanie istniejących szablonów do użycia crispy_forms
+
+- pip install -r requirements.txt
+
+{% load crispy_forms_tags %}
+
+{% crispy form %}
+
+lub
+
+{{ form|crispy }}
+
+
+- dostosować login.html do użycia crispy_forms
+- dostosować create.html do użycia crispy_forms
+- dostosować details.html do użycia crispy_forms

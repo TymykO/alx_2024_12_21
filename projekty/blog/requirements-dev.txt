@@ -1,0 +1,3 @@
+faker
+
+-r requirements-core.txt
