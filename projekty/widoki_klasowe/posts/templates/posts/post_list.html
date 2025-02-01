@@ -1,4 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <h1>Lista postów</h1>
 {% for post in object_list %}
 <a href="{% url 'posts:detail' post.pk %}">{{ post.title }}</a>
 {% endfor %}
+
+{% if drafts %}
+<h2>Moje szkice</h2>
+{% for draft in drafts %}
+<a href="{% url 'posts:detail' draft.pk %}">{{ draft.title }}</a>
+{% endfor %}
+{% endif %}
+
+
+{% endblock %}

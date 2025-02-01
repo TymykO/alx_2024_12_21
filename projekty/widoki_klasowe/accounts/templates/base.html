@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blog{% endblock %}</title>
+</head>
+<body>
+
+    {% if user.is_authenticated %}
+    <p>Witaj, {{ user.username }}!</p>
+    <a href="{% url 'logout' %}">Wyloguj</a>
+    {% else %}
+    <p>Nie jesteś zalogowany.</p>
+    <a href="{% url 'login' %}">Zaloguj</a>
+    {% endif %}
+
+    <nav>
+        <a href="{% url 'posts:list' %}">Lista postów</a>
+        <a href="{% url 'posts:create' %}">Dodaj post</a>
+    </nav>
+
+
+{% block content %}
+{% endblock %}
+
+</body> 
+
+</html>
