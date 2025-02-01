@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
 Debug: {{ debug }}
 
 SQL Queries:
@@ -7,5 +10,9 @@ SQL Queries:
 
 
 
-App name: {{ app_name }}
-Version: {{ version }}
+{% trans "App name" %}: {{ app_name }}
+{% trans "Version" %}: {{ version }}
+
+
+{% blocktrans %} This text will be translated {% endblocktrans %}
+{% endblock %}

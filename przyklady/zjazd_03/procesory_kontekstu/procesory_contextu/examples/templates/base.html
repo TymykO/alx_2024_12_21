@@ -1,0 +1,32 @@
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}My Site{% endblock %}</title>
+</head>
+<body>
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+    <select name="language">
+
+        {% for language in LANGUAGES %} 
+            <option value="{{ language.0 }}" {% if LANGUAGE_CODE == language.0 %}selected{% endif %}>
+                {{ language.1 }}
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Go">
+</form>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
