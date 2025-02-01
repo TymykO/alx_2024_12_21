@@ -10,9 +10,11 @@
     {% if user.is_authenticated %}
     <p>Witaj, {{ user.username }}!</p>
     <a href="{% url 'logout' %}">Wyloguj</a>
+    <a href="{% url 'password_change' %}">Zmień hasło</a>
     {% else %}
     <p>Nie jesteś zalogowany.</p>
     <a href="{% url 'login' %}">Zaloguj</a>
+    <a href="{% url 'register' %}">Zarejestruj</a>
     {% endif %}
 
     <nav>
