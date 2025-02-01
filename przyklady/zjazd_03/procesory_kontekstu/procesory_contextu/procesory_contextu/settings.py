@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "examples.apps.ExamplesConfig",
+    "blog.apps.BlogConfig",
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "blog.middleware.TimeitMiddleware",
 ]
 
 ROOT_URLCONF = "procesory_contextu.urls"
@@ -66,6 +68,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "examples.context_processors.global_settings",
                 "examples.context_processors.unread_notifications",
+                "blog.context_processors.post_counts",
             ],
         },
     },
