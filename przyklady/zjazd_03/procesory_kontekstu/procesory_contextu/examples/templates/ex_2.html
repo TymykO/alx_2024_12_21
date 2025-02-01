@@ -1,0 +1,11 @@
+App name: {{ app_name }}
+Version: {{ version }}
+
+
+
+{% if unread_notifications %}
+    You have {{ unread_notifications }} unread notifications
+{% else %}
+    You have no unread notifications
+{% endif %}
+

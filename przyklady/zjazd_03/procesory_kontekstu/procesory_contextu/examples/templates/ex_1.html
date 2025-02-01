@@ -1,0 +1,11 @@
+Debug: {{ debug }}
+
+SQL Queries:
+{% for query in sql_queries %}
+    {{ query.sql }}
+{% endfor %}
+
+
+
+App name: {{ app_name }}
+Version: {{ version }}
