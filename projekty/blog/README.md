@@ -59,5 +59,7 @@ lub
 <!-- - dodaję do forms.py pole image -->
 <!-- - dodaję do views.py obsługę obrazka -->
 - dodaję do templates/posts/details.html obsługę obrazka
+- dodaję do settings.py MEDIA_URL i MEDIA_ROOT
+- dodaję do urls.py obsługę mediów
 
 <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
