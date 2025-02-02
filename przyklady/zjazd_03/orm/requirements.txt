@@ -4,3 +4,11 @@ django
 # extensions
 django-extensions
 ipython
+
+
+# testing
+pytest
+pytest-django
+pytest-cov
+pytest-mock
+

@@ -58,14 +58,25 @@ class Course(models.Model):
 
 # example for database views
 
+class AvailableBooktManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_available=True)
+
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     published_date = models.DateField()
+    is_available = models.BooleanField(default=False)
+
+    objects = models.Manager()
+    available_objects = AvailableBooktManager()
 
     def __str__(self):
         return f"{self.title} ({self.author.name})"
+    
+    def title_short(self):
+        return self.title[:10]
     
 
 class BookSummary(models.Model):
@@ -77,6 +88,7 @@ class BookSummary(models.Model):
     class Meta:
         managed = False  # Django nie będzie zarządzać tym modelem
         db_table = 'book_summary'  # Nazwa widoku w bazie danych
+        abstract = True
 
     def __str__(self):
         return f"{self.title} ({self.author_name})"
