@@ -1,0 +1,99 @@
+### **Dodawanie własnych paneli statystyk w Django Admin**
+
+#### **Co to robi?**
+Kod tworzy niestandardowy panel administracyjny Django (`CustomAdminSite`), który dodaje dodatkowe dane (`custom_message`) do strony głównej panelu administracyjnego.
+
+#### **Gdzie to zobaczę?**
+Jeśli skonfigurujesz aplikację tak, aby używała `custom_admin` zamiast domyślnego `admin.site`, na stronie głównej panelu administracyjnego (`/admin/`) pojawi się dodatkowy komunikat:  
+📌 **"Witaj w zaawansowanym panelu admina!"**
+
+#### **Po co to robić?**
+To rozwiązanie pozwala na:
+- **Dodanie niestandardowych informacji** do strony głównej panelu (np. liczba zamówień, statystyki użytkowników itp.).
+- **Zmianę wyglądu i organizacji panelu** bez potrzeby modyfikowania szablonów HTML.
+- **Dostosowanie panelu admina** pod specyficzne potrzeby aplikacji.
+
+---
+
+### **Jak tego użyć?**
+
+#### **1. Zamień `admin.site` na `custom_admin`**
+W pliku `urls.py` zamiast:
+```python
+from django.contrib import admin
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+```
+użyj:
+```python
+from .admin import custom_admin
+
+urlpatterns = [
+    path('admin/', custom_admin.urls),
+]
+```
+To sprawi, że Twój panel administracyjny będzie korzystał z nowego `CustomAdminSite`.
+
+---
+
+#### **2. Rozszerz `index()` o więcej statystyk**
+Obecnie dodajemy tylko `custom_message`, ale można rozszerzyć kod np. o liczbę użytkowników:
+
+```python
+from django.contrib.admin import AdminSite
+from django.contrib.auth.models import User
+
+class CustomAdminSite(AdminSite):
+    def index(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['custom_message'] = "Witaj w zaawansowanym panelu admina!"
+        extra_context['user_count'] = User.objects.count()  # Dodajemy liczbę użytkowników
+        return super().index(request, extra_context=extra_context)
+
+custom_admin = CustomAdminSite(name='custom_admin')
+```
+
+Teraz na stronie `/admin/` zobaczysz:
+✅ `"Witaj w zaawansowanym panelu admina!"`  
+✅ Liczbę użytkowników w systemie
+
+---
+
+#### **3. Dostosuj szablon, aby wyświetlać dane**
+Aby faktycznie zobaczyć nową informację (`user_count`) na stronie admina, zmodyfikuj szablon `admin/index.html`:
+
+1️⃣ Stwórz katalog `templates/admin/` w swoim projekcie.  
+2️⃣ Utwórz plik `index.html` i dziedzicz po oryginalnym szablonie:
+```html
+{% extends "admin/index.html" %}
+
+{% block content %}
+<h1>{{ custom_message }}</h1>
+<p>Liczba użytkowników: {{ user_count }}</p>
+{{ block.super }}  {# Zachowuje standardową zawartość panelu admina #}
+{% endblock %}
+```
+
+3️⃣ W `settings.py` dodaj własną ścieżkę do `TEMPLATES`:
+```python
+TEMPLATES = [
+    {
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    },
+]
+```
+
+---
+
+### **Podsumowanie**
+📌 **Bezpośrednie efekty**:
+- Po zalogowaniu do `/admin/` zobaczysz dodatkowy komunikat oraz statystyki.
+- Możesz dostosować stronę główną panelu admina bez edycji kodu Django.
+
+📌 **Zastosowania**:
+- Wyświetlanie **liczbę nowych zamówień**, użytkowników, postów itp.
+- Informacje o systemie, logach czy ostatnich błędach.
+- Spersonalizowany dashboard dla administratorów.
+
+Teraz Twój panel administracyjny nie tylko wygląda unikalnie, ale też dostarcza istotne informacje na pierwszy rzut oka! 🚀
