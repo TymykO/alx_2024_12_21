@@ -17,6 +17,13 @@ class Book(models.Model):
     published_date = models.DateField()
 ```
 
+Po tym tworzymy migracje
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
 ## 2. Tworzenie migracji dla widoku w SQLite
 Ponieważ SQLite nie obsługuje widoków przez ORM Django, musimy dodać je ręcznie w migracji.
 

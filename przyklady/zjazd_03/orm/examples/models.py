@@ -54,3 +54,29 @@ class Course(models.Model):
     
     def __str__(self):
         return self.title
+    
+
+# example for database views
+
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    published_date = models.DateField()
+
+    def __str__(self):
+        return f"{self.title} ({self.author.name})"
+    
+
+class BookSummary(models.Model):
+    id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=200)
+    author_name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    
+    class Meta:
+        managed = False  # Django nie będzie zarządzać tym modelem
+        db_table = 'book_summary'  # Nazwa widoku w bazie danych
+
+    def __str__(self):
+        return f"{self.title} ({self.author_name})"
