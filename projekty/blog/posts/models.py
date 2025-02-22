@@ -9,6 +9,7 @@ class Post(models.Model):
     ]
 
     title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
     author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -27,3 +28,7 @@ class Post(models.Model):
         if self.status == "published" and not self.posted_at:
             self.posted_at = timezone.now()
         super().save(*args, **kwargs)
+
+
+    def get_short_content(self):
+        return self.content[:50] + "..." if len(self.content) > 50 else self.content

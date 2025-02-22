@@ -3,3 +3,4 @@ django-crispy-forms
 crispy-bootstrap5
 pillow
 sorl-thumbnail
+django-jazzmin
