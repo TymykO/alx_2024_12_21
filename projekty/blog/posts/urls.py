@@ -9,4 +9,6 @@ urlpatterns = [
     path("<int:post_id>/", views.post_details, name="details"),
     path("new/", views.post_create, name="create"),
 
+    path("api/v1/posts", views.posts_list_api, name="posts_list_api"),
+
 ]

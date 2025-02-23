@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Post
 from django.db.models.functions import Length
-
+from django.db.models import F, Q
 class ContentLengthFilter(admin.SimpleListFilter):
     title = "Content length"
     parameter_name = "content_length"
@@ -24,9 +24,26 @@ class ContentLengthFilter(admin.SimpleListFilter):
         if self.value() == "long":
             return queryset.filter(content_length__gte=20)
 
+
+class IsProfitableFilter(admin.SimpleListFilter):
+    title = "Is profitable"
+    parameter_name = "is_profitable"
+
+    def lookups(self, request, model_admin):
+        return (
+            ("yes", "Yes"),
+            ("no", "No"),
+        )
+    
+    def queryset(self, request, queryset):
+        if self.value() == "yes":   
+            return queryset.filter(price__gt=F('production_cost'))
+        if self.value() == "no":
+            return queryset.filter(price__lte=F('production_cost'))
+
 class PostAdmin(admin.ModelAdmin):
     list_display = ("title", "author", "status", "posted_at", "get_short_content", "get_short_content2")
-    list_filter = ("status", ContentLengthFilter)
+    list_filter = ("status", ContentLengthFilter, IsProfitableFilter)
     search_fields = ("title", "content")
     readonly_fields = ("created_at", "updated_at", "posted_at")
     prepopulated_fields = {"slug": ("title",)}

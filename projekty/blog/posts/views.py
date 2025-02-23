@@ -5,6 +5,8 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from django.core.paginator import Paginator
+from django.core import serializers
+from django.http import JsonResponse, HttpResponse
 # Create your views here.
 
 @login_required
@@ -63,3 +65,9 @@ def login_view(request):
         form = AuthenticationForm()
         
     return render(request, "posts/login.html", {"form": form})
+
+
+def posts_list_api(request):
+    posts = Post.objects.all()
+    data = serializers.serialize("json", posts)
+    return HttpResponse(data, headers={"Content-Type": "application/json"})
