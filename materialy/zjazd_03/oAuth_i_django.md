@@ -22,6 +22,8 @@ Jeśli chcesz dodać logowanie np. przez Google lub GitHub, najlepszym rozwiąza
 pip install django-allauth
 ```
 
+Overview test types in dbt
+
 ### **Konfiguracja w `settings.py`**
 Dodaj `allauth` do `INSTALLED_APPS`:
 ```python

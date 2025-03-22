@@ -5,7 +5,6 @@
 
 
 from paczka.pricing import calculate_price
-from paczka.helpers import calculate_price as calculate_price_helpers
 from main2 import hello
 print(calculate_price(100, 0.23))
 

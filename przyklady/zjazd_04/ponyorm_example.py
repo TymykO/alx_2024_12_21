@@ -1,8 +1,6 @@
 # pip install pony
 
 from pony.orm import Database, Required, Set, PrimaryKey, db_session
-from datetime import datetime
-from zoneinfo import ZoneInfo
 
 db = Database()
 

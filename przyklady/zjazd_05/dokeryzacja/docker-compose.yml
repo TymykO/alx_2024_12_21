@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  weather-service:
+    build: ./app1
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/weather"]
+      interval: 3s
+      timeout: 2s
+      retries: 3
+      start_period: 2s
+
+  news-service:
+    build: ./app2
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+    environment:
+      - WEATHER_SERVICE_URL=http://weather-service:5000
+    depends_on:
+      weather-service:
+        condition: service_healthy
+    
+
+networks:
+  app-network:
+    driver: bridge
