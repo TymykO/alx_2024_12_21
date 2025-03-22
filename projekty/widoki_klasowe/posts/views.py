@@ -1,7 +1,5 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView, CreateView
 from .models import Post
-from django.urls import reverse_lazy
 # Create your views here.
 
 class HomeView(TemplateView):

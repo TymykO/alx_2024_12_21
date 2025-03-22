@@ -1,5 +1,5 @@
 """
-URL configuration for django_components project.
+URL configuration for async_django project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -18,13 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
-
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("home.urls")),
-    path("examples/", include("examples.urls")),   # http://127.0.0.1/components/
-    path("examples2/", include("examples2.urls")),   
-    path("books/", include("books.urls")),
-
-] 
+    path("api/", include("example.urls")),
+]

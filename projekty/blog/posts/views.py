@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from django.core.paginator import Paginator
 from django.core import serializers
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 # Create your views here.
 
 @login_required

@@ -2,7 +2,7 @@ from decimal import Decimal
 import factory
 from factory.django import DjangoModelFactory
 from orders.factories import CategoryFactory, ProductFactory
-from orders.models import Category, Product
+from orders.models import Category
 # Sposób 1: Tworzenie produktów z tą samą kategorią
 kategoria = CategoryFactory()
 produkty = ProductFactory.create_batch(

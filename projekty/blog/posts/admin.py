@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Post
 from django.db.models.functions import Length
-from django.db.models import F, Q
+from django.db.models import F
 class ContentLengthFilter(admin.SimpleListFilter):
     title = "Content length"
     parameter_name = "content_length"

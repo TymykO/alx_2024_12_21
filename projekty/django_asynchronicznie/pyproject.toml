@@ -1,0 +1,12 @@
+[project]
+name = "django-asynchronicznie"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13.2"
+dependencies = [
+    "aiohttp>=3.11.14",
+    "django>=5.1.7",
+    "requests>=2.32.3",
+    "uvicorn>=0.34.0",
+]
