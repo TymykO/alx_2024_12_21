@@ -1,0 +1,20 @@
+POST http://localhost:8000/api/token/
+Content-Type: application/json
+
+{"username": "rkorzen", "password": "123"}
+
+
+# {
+#   "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0MjgwOTM3MSwiaWF0IjoxNzQyNzIyOTcxLCJqdGkiOiI5MjcyNjA5OGI4NTM0M2ZmOTIxZmViZjZmNmRjYjIyNyIsInVzZXJfaWQiOjF9.2ARf-rFIZ_zJJwhpsYLxn3qpjJ7zQIjLKYM6EprQBzw",
+#   "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQyNzIzODcxLCJpYXQiOjE3NDI3MjI5NzEsImp0aSI6IjA1NmIzMzczNmY4ODRjZGQ5NWE2OTU3NzAxNmZmMTgxIiwidXNlcl9pZCI6MX0.Wy53IugGpBfFaPbKoaQY8W3gGxRRbIHlKws2soQ8Upg"
+# }
+
+###
+
+
+GET http://localhost:8000/api/hello/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQyNzIzODcxLCJpYXQiOjE3NDI3MjI5NzEsImp0aSI6IjA1NmIzMzczNmY4ODRjZGQ5NWE2OTU3NzAxNmZmMTgxIiwidXNlcl9pZCI6MX0.Wy53IugGpBfFaPbKoaQY8W3gGxRRbIHlKws2soQ8Upg
+
+# {
+#   "message": "Cześć, rkorzen!"
+# }

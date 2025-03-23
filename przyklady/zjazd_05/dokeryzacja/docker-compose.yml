@@ -21,7 +21,7 @@ services:
     networks:
       - app-network
     environment:
-      - WEATHER_SERVICE_URL=http://weather-service:5000
+      - WEATHER_SERVICE_URL=value
     depends_on:
       weather-service:
         condition: service_healthy
